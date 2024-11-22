@@ -26,11 +26,11 @@ router.register(r'books', BooksListViewSet, base_name="books")
 urlpatterns = [
     url(r'^search/', include('haystack.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^user/', include('users.urls', namespace='user')), # 用户模块
+    url(r'^user/', include(('users.urls', 'users'), namespace='user')), # 用户模块
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^login/', obtain_jwt_token),
-    url(r'^cart/', include('cart.urls', namespace='cart')),
+    url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^order/', include('order.urls', namespace='order')),
     url(r'^', include('books.urls', namespace='books')),
 ]
