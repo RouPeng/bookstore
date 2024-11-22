@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^login/', obtain_jwt_token),
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
-    url(r'^order/', include('order.urls', namespace='order')),
-    url(r'^', include('books.urls', namespace='books')),
+    url(r'^order/', include(('order.urls', 'order'), namespace='order')),
+    url(r'^', include(('books.urls', 'books'), namespace='books')),
 ]
