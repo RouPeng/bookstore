@@ -70,7 +70,7 @@ class Address(BaseModel):
     zip_code = models.CharField(max_length=6, verbose_name='邮政编码')
     recipient_phone = models.CharField(max_length=11, verbose_name='联系电话')
     is_default = models.BooleanField(default=False, verbose_name='是否默认')
-    passport = models.ForeignKey('Passport', verbose_name='账户')
+    passport = models.ForeignKey('Passport', verbose_name='账户', on_delete=models.CASCADE)
 
     objects = AddressManager()
 

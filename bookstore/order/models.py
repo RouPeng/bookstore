@@ -27,8 +27,8 @@ class OrderInfo(BaseModel):
     )
 
     order_id = models.CharField(max_length=64, primary_key=True, verbose_name='订单编号')
-    passport = models.ForeignKey('users.Passport', verbose_name='下单账户')
-    addr = models.ForeignKey('users.Address', verbose_name='收货地址')
+    passport = models.ForeignKey('users.Passport', verbose_name='下单账户', on_delete=models.CASCADE)
+    addr = models.ForeignKey('users.Address', verbose_name='收货地址', on_delete=models.CASCADE)
     total_count = models.IntegerField(default=1, verbose_name='商品总数')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='商品总价')
     transit_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='订单运费')
@@ -41,8 +41,8 @@ class OrderInfo(BaseModel):
 
 class OrderBooks(BaseModel):
     '''订单商品模型类'''
-    order = models.ForeignKey('OrderInfo', verbose_name='所属订单')
-    books = models.ForeignKey('books.Books', verbose_name='订单商品')
+    order = models.ForeignKey('OrderInfo', verbose_name='所属订单', on_delete=models.CASCADE)
+    books = models.ForeignKey('books.Books', verbose_name='订单商品', on_delete=models.CASCADE)
     count = models.IntegerField(default=1, verbose_name='商品数量')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='商品价格')
 
